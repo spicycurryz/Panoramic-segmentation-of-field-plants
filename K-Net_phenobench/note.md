@@ -11,14 +11,6 @@
   - 语义分割：将每一个像素映射到一个语义类别（每个pixel代表一个语义类别）
   - 实例分割：将每一个像素映射到一个instance ID （同一个object上）
   - 全境分割：将每一个像素映射到一个instance ID或语义类别{存在stuff（不可数区域）}
-#### 语义分割框架
-&emsp;CNN生成图像表征--卷积核与特征进行卷积得到mask，即先检测后分割的框架
-![pic001](https://raw.githubusercontent.com/Theooo00/PicGo/main/img/pic001.png?token=BH77DGIT55CN7QPNTZC2XBDGIR4Y2)
-
-
-&emsp;实例分割与全境分割框架较复杂
-
-![pic002](https://raw.githubusercontent.com/Theooo00/PicGo/main/img/%0D%0A.png?token=BH77DGMZEFSYEKM3TOJQ62TGIR47S)
 
 ## K-Net的本质
 
