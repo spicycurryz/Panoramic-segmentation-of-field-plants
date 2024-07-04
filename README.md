@@ -18,6 +18,6 @@
 
 ## 3 课题任务介绍
 
-* 基于 PhenoBench 数据集[下载链接](https://www.phenobench.org/)，我们选取了OneFormer,Mask2Former,K-net,Panoptic Deeplab和MP-former五个统一分割模型
+* 基于 PhenoBench 数据集([下载链接](https://www.phenobench.org/))，我们选取了OneFormer,Mask2Former,K-net,Panoptic Deeplab和MP-former五个统一分割模型
 * 我们针对作物、杂草和土壤的语义分割，使用 mIoU，class-specific IoUs 和 Boundary-IoU 等作为网络性能评估指标
 * 针对作物和杂草进行实例分割，使用 PQ、 RQ、 SQ 和 mIoU 等作为评估指标
