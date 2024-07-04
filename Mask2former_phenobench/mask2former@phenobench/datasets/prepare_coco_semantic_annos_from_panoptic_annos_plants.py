@@ -12,7 +12,7 @@ from fvcore.common.download import download
 from panopticapi.utils import rgb2id
 from PIL import Image
 
-from detectron2.data.datasets.builtin_meta import COCO_CATEGORIES
+# from detectron2.data.datasets.builtin_meta import COCO_CATEGORIES
 
 
 def _process_panoptic_to_semantic(input_panoptic, output_semantic, segments, id_map):
@@ -42,13 +42,20 @@ def separate_coco_semantic_from_panoptic(panoptic_json, panoptic_root, sem_seg_r
     """
     os.makedirs(sem_seg_root, exist_ok=True)
 
-    id_map = {}  # map from category id to id in the output semantic annotation
-    assert len(categories) <= 254
-    for i, k in enumerate(categories):
-        id_map[k["id"]] = i
+    # id_map = {}  # map from category id to id in the output semantic annotation
+    # assert len(categories) <= 254
+    # for i, k in enumerate(categories):
+    #     id_map[k["id"]] = i
     # what is id = 0?
     # id_map[0] = 255
-    print(id_map)
+    id_map = {
+        0: 0,
+        1: 1,
+        2: 2,
+        3: 3,
+        4: 4,
+    }
+    # print(id_map)
 
     with open(panoptic_json) as f:
         obj = json.load(f)
@@ -75,10 +82,12 @@ def separate_coco_semantic_from_panoptic(panoptic_json, panoptic_root, sem_seg_r
 
 if __name__ == "__main__":
     dataset_dir = os.path.join(os.getenv("DETECTRON2_DATASETS", "datasets"), "coco")
-    for s in ["val2017", "train2017"]:
+
+    dataset_dir = "/root/autodl-fs/PhenoBench"  # DATASET DIRECTORY
+    for s in ["train", "val", "test"]:
         separate_coco_semantic_from_panoptic(
-            os.path.join(dataset_dir, "annotations/panoptic_{}.json".format(s)),
-            os.path.join(dataset_dir, "panoptic_{}".format(s)),
-            os.path.join(dataset_dir, "panoptic_semseg_{}".format(s)),
-            COCO_CATEGORIES,
+            os.path.join(dataset_dir, "plants_panoptic_{}.json".format(s)),
+            os.path.join(dataset_dir, "plants_panoptic_{}".format(s)),
+            os.path.join(dataset_dir, "plants_panoptic_semseg_{}".format(s)),
+            "",
         )
