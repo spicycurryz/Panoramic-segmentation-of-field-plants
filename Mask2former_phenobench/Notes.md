@@ -6,8 +6,6 @@
 
 由于Mask2fomer论文中提及了许多模式识别课程之外的模型或者知识，在阅读的过程中我遇到了很多困难，于是我先去学习了一下额外的预备知识。
 
-***
-
 ### 1.Transformer
 
 Transformer是一个基于注意力机制和Encoder-Decoder的网络主干结构，最早用于机器翻译，后来研究者发现其在自然语言处理和图像分类中取得了优越的性能。其基本形式适用于序列建模任务。
@@ -21,7 +19,7 @@ Transformer是一个基于注意力机制和Encoder-Decoder的网络主干结构
 #### Attention model
 
 * Attention model模仿人的注意力机制。包括Query(Q),key(k),value(V)三个部分。V相当于一个知识库，是我们手头已有的资料，K是知识库的钥匙(标志?)，Q是我们待查询的东西。
-* 先将Q和K做点积查看两者的相似度关系，接着使用softmax函数进行归一化，得到attention矩阵，将attetion矩阵与V的乘积作为输出。\[O = softmax(Q{K^T})V\]
+* 先将Q和K做点积查看两者的相似度关系，接着使用softmax函数进行归一化，得到attention矩阵，将attetion矩阵与V的乘积作为输出。
 * Transformer中还对上述注意力机制进行了改进，使用了“多头注意力机制”，多头注意力机制假设输入的特征空间可以分为互不相交的几个子空间，然后我们只需要在几个子空间内单独计算注意力，最后将多个子空间的计算结果拼接即可。
 
 #### Padding Mask
@@ -38,8 +36,6 @@ Transformer是一个基于注意力机制和Encoder-Decoder的网络主干结构
 
 * 如图所示，transformer由编码器和解码器组成，解码器包含掩膜多注意力模块，归一化模块，前馈全连接神经网络，输出经线性化后经softmax层，输出最为可能的预测值。
 
-***
-
 ## 2.Maskformer结构
 
 作为Mask2former模型的前身，在阅读论文前首先对Maskformer进行了一定的了解。
@@ -50,8 +46,6 @@ Transformer是一个基于注意力机制和Encoder-Decoder的网络主干结构
 MaskFormer模型认为，使用二元掩膜进行分割的mask classfication可以同样应用于语义分割，取代之前逐像素分类的处理方式，统一了语义分割，实例分割和全景分割。MaskFormer提出将全景分割看成是mask分类任务。
 
 模型分析如下：Pixel-level module模块用backbone对图片的H和W进行压缩，提取视觉特征，通过像素解码器得到per-pixel embedding；Transformer module模块使用标准的 Transformer 解码器，输入是图像特征和N个可学习的query，输出是N个mask embedding和N个cls pred；最终Segmentation module模块根据mask embedding和per-pixel embedding相乘得到N个mask prediction，最后cls pred和mask pred相乘，丢弃没有目标的mask，得到最终预测结果。
-
-***
 
 ## 3.Mask2Former结构
 
