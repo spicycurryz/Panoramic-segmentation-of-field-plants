@@ -1,6 +1,6 @@
 # MODEL_ZOO
 
-* 这个文件包含了我们在phebobench数据集上训练完成的模型，所有模型都使用了NVIDIA 100显卡训练了50000次,写于下面表格中方便下载。
+* 这个文件包含了我们在phebobench数据集上训练完成的模型，所有模型都使用了NVIDIA 100显卡训练了50000次,写于下面表格中方便下载
 
 * 所有模型使用的Backbone是[Resnet-50](https://dl.fbaipublicfiles.com/detectron2/ImageNetPretrained/MSRA/R-50.pkl)
 
