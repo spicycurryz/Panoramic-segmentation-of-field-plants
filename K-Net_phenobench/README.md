@@ -1,9 +1,9 @@
 # K-Net@phenobench
 
-## 1.Installation
+## 1.安装 Installation
 
-It following OpenMMLab packages:
-requires the 
+OpenMMLab 软件包如下:
+版本需求
 * MIM >= 0.1.5
 * MMCV-full >= v1.3.14
 * MMDetection >= v2.17.0
@@ -18,8 +18,8 @@ pip install git+https://github.com/cocodataset/panopticapi.git
 mim install mmcv-full
 ```
 
-## 2.Data preparation
-Prepare data following [MMDetection](https://github.com/open-mmlab/mmdetection)and [MMSegmentation](https://github.com/open-mmlab/mmsegmentation). The data structure looks like below:
+## 2.数据准备 Data preparation
+根据[MMDetection](https://github.com/open-mmlab/mmdetection)and [MMSegmentation](https://github.com/open-mmlab/mmsegmentation)准备数据集。数据集结构如下:
 
 ```plaintext
 data/
@@ -35,34 +35,33 @@ data/
 ```
 
 ## 3.Training and testing
-For training and testing, you can directly use mim to train and test the model
+对于训练和测试，可以直接使用 MIM 来训练和测试模型
 
 
 ```bash
-# train semantic segmentation models
+# 训练语义分割模型
 python train.py --work-dir work_dir1 configs/det/knet/knet_s3_r101_dcn-c3-c5_fpn_ms-3x_coco-panoptic.py 
 #环境配制建议：
 mmcv                                     2.1.0
 mmdet                                    3.3.0
 mmengine                                 0.10.4 
 
-# train  instance segmentation models
+# 训练实例分割模型
 python train.py --work-dir work_dir3 configs/det/knet/knet_s3_r50_fpn_1x_coco-panoptic.py
 #环境配制建议：
 mmcv-full                                1.5.0
 mmengine                                 0.10.4 
 
 ```
-* PARTITION: the slurm partition you are using
-* CHECKPOINT: the path of the checkpoint downloaded from our model zoo or trained by yourself
-* WORK_DIR: the working directory to save configs, logs, and checkpoints
-* CONFIG: the config files under the directory configs/
-* JOB_NAME: the name of the job that are necessary for slurm
+* PARTITION: 正在使用的 slurm 分区
+* WORK_DIR: 保存配置、日志和检查点的工作目录
+* CONFIG: 目录下的配置文件
+* JOB_NAME: slurm所需的工作名称
 
-## 4.Projects in OpenMMLab
-[MMEngine](https://github.com/open-mmlab/mmengine): OpenMMLab foundational library for training deep learning models.
-[MMCV](https://github.com/open-mmlab/mmcv): OpenMMLab foundational library for computer vision.
-[MMDetection](https://github.com/open-mmlab/mmdetection): OpenMMLab detection toolbox and benchmark.
-[MMSegmentation](https://github.com/open-mmlab/mmsegmentation): OpenMMLab semantic segmentation toolbox and benchmark.
-[MIM](https://github.com/open-mmlab/mim): MIM installs OpenMMLab packages.
+## 4. OpenMMLab
+[MMEngine](https://github.com/open-mmlab/mmengine): 用于训练深度学习模型的 OpenMMLab 基础库
+[MMCV](https://github.com/open-mmlab/mmcv): OpenMMLab 计算机视觉基础库
+[MMDetection](https://github.com/open-mmlab/mmdetection):OpenMMLab 检测工具箱和基准测试
+[MMSegmentation](https://github.com/open-mmlab/mmsegmentation): OpenMMLab 语义分割工具箱和基准测试
+[MIM](https://github.com/open-mmlab/mim): MIM 安装 OpenMMLab 软件包
 
