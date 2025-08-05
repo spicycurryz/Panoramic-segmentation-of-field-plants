@@ -32,7 +32,7 @@ Transformer是一个基于注意力机制和Encoder-Decoder的网络主干结构
 
 #### Transformer原理
 
-![transformer](https://raw.githubusercontent.com/XB304/image/main/img/transformer.png)
+![transformer_struct](https://raw.githubusercontent.com/Flower-Melon/image/main/img/2025/transformer_struct.png)
 
 * 如图所示，transformer由编码器和解码器组成，解码器包含掩膜多注意力模块，归一化模块，前馈全连接神经网络，输出经线性化后经softmax层，输出最为可能的预测值。
 
@@ -40,7 +40,7 @@ Transformer是一个基于注意力机制和Encoder-Decoder的网络主干结构
 
 作为Mask2former模型的前身，在阅读论文前首先对Maskformer进行了一定的了解。
 
-![maskformer](https://raw.githubusercontent.com/XB304/image/main/img/maskformer.png)
+![maskformer](https://raw.githubusercontent.com/Flower-Melon/image/main/img/2025/maskformer.png)
 
 在同一分割图像模型提出前，语义分割的策略是把问题简化为单个像素分类的问题，即将图像离散成单个的像素点，对每个像素点进行分类（类别数来自于数据集定义的类别数），把分割问题转化成了分类问题。这样做的缺点是语义分割结果只能输出固定个数的类别数目，很难解决实例分割这样更难的问题。而实例分割的思路是以二元掩膜作为基本单位（binary Mask），对于每一个binary Mask预测一个类别。
 MaskFormer模型认为，使用二元掩膜进行分割的mask classfication可以同样应用于语义分割，取代之前逐像素分类的处理方式，统一了语义分割，实例分割和全景分割。MaskFormer提出将全景分割看成是mask分类任务。
@@ -51,10 +51,10 @@ MaskFormer模型认为，使用二元掩膜进行分割的mask classfication可�
 
 如下图所示MaskFormer作为统一分割模型，在性能上接近或超越了专门用于语义分割和全景分割的模型，但是在实例分割领域，MaskFormer还是较差。
 
-![mask2fomer指标](https://raw.githubusercontent.com/XB304/image/main/img/mask2fomer指标.png)
+![mask2fomer_1](https://raw.githubusercontent.com/Flower-Melon/image/main/img/2025/mask2fomer_1.png)
 
 Mask2Former的提出大大提高了模型的性能，使得Mask2Former作为统一分割模型，首次在性能上超越了专门用于特定分割的模型。
 
-![mask2former](https://raw.githubusercontent.com/XB304/image/main/img/mask2former.png)
+![mask2former_2](https://raw.githubusercontent.com/Flower-Melon/image/main/img/2025/mask2former_2.png)
 
 Mask2Former增加了mask-attention机制：在做embeding时， MaskFormer使用每个像素和整张图像做attention，Mask2Former使用像素和自己同一个类别的，同一个qurey的像素做attention。个是相对maskformer最主要的区别，最核心的贡献。另外，pixel decoder输出的图像特征大小分别为原图的1/32, 1/16, 1/8。对于每个分辨率的图片，在给到Transformer decoder之前，会加入sinusoidal positional embedding 和一个可学习scale-level embedding 。Transformer decoder对这种三层Transformer decoder结构重复L次。
